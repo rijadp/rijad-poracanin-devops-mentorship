@@ -1,0 +1,11 @@
+Finally, you can also use the read command to read
+data stored in a fi le on the Linux system.
+Each call to the read command reads a single line
+of text from the fi le. When no more
+lines are left in the fi le, the read command 
+exits with a non-zero exit status.
+The tricky part is getting the data from the 
+fi le to the read command. The most common
+method is to pipe the result of the cat command
+of the fi le directly to a while command
+that contains the read command. Here’s an example:
