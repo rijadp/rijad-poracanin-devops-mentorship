@@ -1,6 +1,6 @@
 # rijad-poracanin-devops-mentorship
 
-**Osnovne GIT komande**
+## Osnovne GIT komande
 
 ```bash
 $ git init #inicijalizacija git repozitorijuma
@@ -40,3 +40,37 @@ $ git remote add origin repo-url #povezivanje lokalnog repozitorijuma sa udaljen
 $ git config --global user.name "username" #podesavanje korisnickog imena --global znaci da ce ove postavke biti primjenjene na svaki repozitorijum na vasem racunaru
 
 ```
+
+## Kako kreirati Pull Request
+1. Kreirajte novi **fork** ovog repozitorija. Kliknite na dugme "Fork" na vrhu stranice da biste kreirali kopiju repozitorija u vašem računu na GitHub-u.
+2. Klonirajte **fork** repozitoriji na vaš lokalni računar. Kliknite na dugme **Code** i kopirajte SSH adresu do vaseg forka. Nakon toga u terminalu izvrsite naredbu `git clone <URL>`. Npr. `git clone https://github.com/vase-github-korisnicko-ime/devops-aws-mentorship-program.git`
+3. Kada ste klonirali fork repozitorija, kreirajte novu granu sa nazivom koja odgovara izmjenama koje zelite da napravite. Npr. `git checkout -b fix-typo-in-contributing-md`
+4. Napravite izmjene koje zelite da dodate u repozitorij. Npr. `vim CONTRIBUTING.md`
+5. Kada ste napravili izmjene, dodajte ih u **staging**. Npr. `git add CONTRIBUTING.md`
+6. Kada ste dodali izmjene u **staging**, napravite **commit**. Npr. `git commit -m "Fix typo in CONTRIBUTING.md"`
+7. Kada ste napravili **commit**, push-ujte izmjene na GitHub. Npr. `git push origin fix-typo-in-contributing-md`
+8. Kada ste push-ovali izmjene na GitHub, kreirajte **Pull Request**. Kliknite na dugme **Compare & pull request** a zatim na dugme **Create pull request**.
+9. Kada kreirate **Pull Request**, dodajte opis izmjena koje ste napravili. Npr. "Fix typo in CONTRIBUTING.md"
+10. Kada ste dodali opis izmjena, kliknite na dugme **Create pull request**.
+11. Postaljite vas **Pull Request** na pregled od strane mentora ovog programa unutar jednog od Slack kanala i tagujte nekog od mentora.
+
+## Korisni linkovi
+- Link za [Markdown sintaksu](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- Link2
+
+**Linkovi sa predavanja**
+
+- [Week-1-1 (Git i Github)](https://www.youtube.com/watch?v=jNPFe9vdRFI)
+- [Week-1-2 (Git i Github)](https://www.youtube.com/watch?v=FDOho51mkuE)
+- [Week-2-1 (Linux/Unix)](https://www.youtube.com/watch?v=VWUv7sISfs0)
+- [Week-2-2 (Linux/Unix)](https://www.youtube.com/watch?v=ZbtgMIyu5ZY)
+- [Week-3-1 (Bash/Shell scripting)](https://www.youtube.com/watch?v=HVXbqo21ED0)
+- [Week-4-1 (Networking)](https://www.youtube.com/watch?v=4coqHeNVeps)
+- [Week-4-2 (Networking)](https://www.youtube.com/watch?v=UlkPnSWJlH8)
+- [Week-5-1 (Web Servers/NGINX)](https://www.youtube.com/watch?v=agT0spYqHP4)
+
+
+**Office Hours**
+
+- [Week-1](https://www.youtube.com/watch?v=Ve7BY5WwRDw)
+- [Week-3](https://www.youtube.com/watch?v=NTlYCjF0ldY)
