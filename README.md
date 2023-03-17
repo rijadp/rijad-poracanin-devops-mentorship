@@ -138,10 +138,15 @@ $ chmod 600 <filename> #Change permissions for user
 $ chmod u+x <filename> #Change permissions for user
 $ chown user:group <filename> #Change owner
 ```
+
+## Najvažniji TCP i UDP portovi
+![Common TCP and UDP Ports](https://github.com/allops-solutions/devops-aws-mentorship-program/blob/main/devops-mentorship-program/03-march/week-4-070323/files/common-udp-tcp-protocols.png?raw=true)
+
 ## Korisni linkovi
 - Link za [Markdown sintaksu](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [How to use GitHub with SSH Keys on Windows 10](https://www.youtube.com/watch?v=a-zX_qc2S-M)
 - Uvod u Git, Tomo Krajina - [bilješke](https://github.com/rijadp/devops-aws-mentorship-program/blob/main/devops-mentorship-program/02-february/week-1-140223/files/uvod-u-git-notes.md)
+- [Explain Shell](https://explainshell.com/)
 
 **Linkovi sa predavanja**
 
@@ -153,6 +158,7 @@ $ chown user:group <filename> #Change owner
 - [Week-4-1 (Networking)](https://www.youtube.com/watch?v=4coqHeNVeps)
 - [Week-4-2 (Networking)](https://www.youtube.com/watch?v=UlkPnSWJlH8)
 - [Week-5-1 (Web Servers/NGINX)](https://www.youtube.com/watch?v=agT0spYqHP4)
+- [Week-5-2 (Web Servers/NGINX)](https://www.youtube.com/watch?v=qhzWUF5mpWU)
 
 
 **Office Hours**
