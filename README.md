@@ -142,6 +142,64 @@ $ chown user:group <filename> #Change owner
 ## Najvažniji TCP i UDP portovi
 ![Common TCP and UDP Ports](https://github.com/allops-solutions/devops-aws-mentorship-program/blob/main/devops-mentorship-program/03-march/week-4-070323/files/common-udp-tcp-protocols.png?raw=true)
 
+## Instalacija NGINX-a na CentOS 7
+Koraci za instalaciju Nginx-a na CentOS 7:
+```bash
+$ sudo yum install epel-release -y # instalacija EPEL repozitorija
+$ sudo yum install nginx -y # instalacija Nginx-a
+$ sudo systemctl start nginx # pokretanje Nginx-a
+```
+Defaultni root direktoriji nalazi se na lokaciji: `/usr/share/nginx/html`. Ova putanja definisana je unutar `server` bloka defaultnog nginx konfiguracijskog fajla koji se nalazi na lokaciji `/etc/nginx/nginx.conf`.
+**nginx.conf** predstavlja globalni konfiguracijski fajl. U njemu se definisu globalne promjenljive, globalni `http` blok, globalni `server` blok, itd.
+
+#### NGINX Konfiguracijski fajlovi
+Za svaki pojedinacni web sajt / web servis koji hostujete na serveru potrebno je kreirati zaseban `server` blok unutar konfiguracijskog fajla. Preporuka je da se ti konfiguracijski fajlovi nalaze u direktorijumu `/etc/nginx/conf.d/` i da imaju ekstenziju `.conf`. Za svaki sajt kreirate poseban konfiguracijski fajl.
+U NGINX-u, direktive (eng. directives) su komande koje definisu kako Nginx obradjuje HTTP zahtjeve. Svaka direktiva se sastoji od naziva i vrijednosti koja se dodeljuje tom nazivu. Direktive se koriste u konfiguracijskim fajlovima da bi se definisala podesavanja za Nginx web server, kao sto su server blokovi, lokacije i ostale opcije.
+
+Primjer jedne direktive bi mogao biti:
+```bash
+listen 80;
+```
+U ovom primjeru, "listen" je naziv direktive, a "80" je vrijednost koja se dodeljuje toj direktivi. Ova direktiva definise da Nginx slusa na portu 80 za dolazne HTTP zahtjeve.
+
+**Konteksti (eng. contexts)** su oblasti u kojima se koriste direktive. Svaka direktiva se nalazi u nekom kontekstu, a kontekst definise koja se podesavanja primjenjuju na koji dio Nginx konfiguracije. Postoje tri vrste konteksta u Nginx-u:
+
+- `Main Context` - Ovo je glavni kontekst koji obuhvata podesavanja koja se primjenjuju globalno na Nginx server.
+
+- `Server Context` - Ovaj kontekst obuhvata podesavanja koja se primjenjuju na pojedinacne server blokove u konfiguraciji.
+
+- `Location Context` - Ovaj kontekst obuhvata podesavanja koja se primjenjuju na pojedinacne URL-ove na serveru.
+
+Primjer server konteksta bi mogao biti:
+```bash
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/example.com;
+    index index.html;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+U ovom primjeru, sve direktive koje se nalaze u bloku `server` primjenjuju se na taj pojedinacni server blok. Direktive koje se nalaze u bloku `location` primjenjuju se samo na URL-ove koji odgovaraju putanji /. U ovom slucaju, direktiva `try_files` definise da Nginx treba da pokusa da pronadje datoteku koja odgovara URL-u koji je klijent poslao. Ako datoteka ne postoji, Nginx ce pokusati da pronadje datoteku koja odgovara URL-u koji je klijent poslao, ali sa dodatnim znakom /. Ako ni ta datoteka ne postoji, Nginx ce pokusati da pronadje datoteku koja se zove index.html.
+**Razumijevanje konteksta i direktiva u Nginx-u je kljucno za kreiranje ispravne konfiguracije i definisanje podesavanja za vas web server.**
+
+Da bi izmjene koje ste napravili u konfiguraciji Nginx-a bile vidljive, potrebno je ponovo pokrenuti Nginx. Ovo se moze uraditi sa sledecom komandom:
+```bash
+$ sudo systemctl restart nginx
+```
+Pored nginx.conf fajla, postoje i drugi konfiguracijski fajlovi koji se nalaze u direktorijumu `/etc/nginx/`. Ovi fajlovi se koriste za dodatna podesavanja i konfiguracije.
+
+To su sljedeci fajlovi:
+- `mime.types` - Ovaj fajl sadrzi listu MIME tipova koji se koriste za odredjivanje tipa sadrzaja koji se vraca klijentu sto omogucava klijentima da pravilno prikazu sadrzaj web stranica. Npr. MIME tip za HTML fajl je `text/html`, a za JPEG sliku `image/jpeg`. Ako server salje HTML fajl sa MIME tipom `text/html`, browser ce ga pravilno interpretirati i prikazati HTML stranicu. Slicno tome, ako server salje sliku sa MIME tipom `image/jpeg`, browser ce prikazati sliku na odgovarajuci nacin.
+- `fastcgi.conf` - Ovaj fajl sadrzi podesavanja za `FastCGI` procese. `FastCGI` procesi se koriste za obradu dinamickog sadrzaja na web sajtu. `FastCGI` je protokol koji omogucava web serveru da uspostavi vezu sa FastCGI procesom koji izvrsava aplikaciju. FastCGI procesi se koriste za generisanje dinamickog sadrzaja na web sajtu, kao sto su skripte za generisanje HTML stranica, **PHP skripte** i drugi programski jezici.
+- `scgi_params` - **SCGI (Simple Common Gateway Interface)** je jednostavan protokol za komunikaciju izmedju web servera i aplikacijskog servera koji se koristi za generisanje dinamickog sadrzaja na web sajtovima. SCGI je slican FastCGI protokolu, ali je jednostavniji i manje fleksibilan. `SCGI` procesi se koriste za generisanje dinamickog sadrzaja na web sajtu, kao sto su skripte za generisanje HTML stranica, **Python skripte** i drugi programski jezici.
+- `uwsgi_params` - Ovaj fajl sadrzi podesavanja za `uWSGI` procese. `uWSGI` je jedan od najpopularnijh **WSGI (Web Server Gateway Interface)** servera. `uWSGI` procesi se koriste za obradu dinamickog sadrzaja na web sajtu. `uWSGI` je protokol koji omogucava web serveru da uspostavi vezu sa `uWSGI` procesom koji izvrsava aplikaciju. `uWSGI` procesi se koriste za generisanje dinamickog sadrzaja na web sajtu, kao sto su skripte za generisanje HTML stranica, **Python skripte** i drugi programski jezici. Preporuka je da pogledate sljedecu stranicu [Why is WSGI necessary?](https://www.fullstackpython.com/wsgi-servers.html) kako bi razumjeli zasto je potreban WSGI protokol.
+- `*-utf` - UTF metode omogucavaju enkodiranje znakova razlicitih jezika sto omogucava njihovo prikazivanje.
+
+**NAPOMENA:** Instalacija Nginx-a na ostalim Linux/Unix distribucijama moze da kreira dodatne direktorije poput `sites-available` i `sites-enabled`. Ovi direktoriji mogu da sadrze dodatne `.conf` fajlove koji se koriste za dodatna podesavanja i konfiguracije. Kod CentOS 7 OS-a konfiguracije za razlicite sajtove se nalaze unutar direktorijuma `/etc/nginx/conf.d/`.
+
 ## Korisni linkovi
 - Link za [Markdown sintaksu](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [How to use GitHub with SSH Keys on Windows 10](https://www.youtube.com/watch?v=a-zX_qc2S-M)
