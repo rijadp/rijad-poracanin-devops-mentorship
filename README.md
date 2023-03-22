@@ -212,7 +212,7 @@ To su sljedeci fajlovi:
 - [Week-4-2 (Networking)](https://www.youtube.com/watch?v=UlkPnSWJlH8)
 - [Week-5-1 (Web Servers/NGINX)](https://www.youtube.com/watch?v=agT0spYqHP4)
 - [Week-5-2 (Web Servers/Apache)](https://www.youtube.com/watch?v=qhzWUF5mpWU)
-- [Week-5-2 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=no5T7CzRumI)
+- [Week-6-1 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=no5T7CzRumI)
 
 
 **Office Hours**
