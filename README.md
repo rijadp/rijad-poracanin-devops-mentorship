@@ -199,6 +199,53 @@ To su sljedeci fajlovi:
 - `uwsgi_params` - Ovaj fajl sadrzi podesavanja za `uWSGI` procese. `uWSGI` je jedan od najpopularnijh **WSGI (Web Server Gateway Interface)** servera. `uWSGI` procesi se koriste za obradu dinamickog sadrzaja na web sajtu. `uWSGI` je protokol koji omogucava web serveru da uspostavi vezu sa `uWSGI` procesom koji izvrsava aplikaciju. `uWSGI` procesi se koriste za generisanje dinamickog sadrzaja na web sajtu, kao sto su skripte za generisanje HTML stranica, **Python skripte** i drugi programski jezici. Preporuka je da pogledate sljedecu stranicu [Why is WSGI necessary?](https://www.fullstackpython.com/wsgi-servers.html) kako bi razumjeli zasto je potreban WSGI protokol.
 - `*-utf` - UTF metode omogucavaju enkodiranje znakova razlicitih jezika sto omogucava njihovo prikazivanje.
 
+## Konfiguracija Node.js aplikacije
+
+Koristan tutorijal na Digital Ocean stranici [How To Set Up a Node.js Application for Production on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-centos-7)
+```bash
+$ curl -L -o nodesource_setup.sh https://rpm.nodesource.com/setup_14.x # Download Node.js 14 setup script
+$ sudo bash nodesource_setup.sh # Run Node.js setup script
+$ sudo yum clean all # Clean yum cache
+$ sudo yum makecache fast # Make yum cache
+$ sudo yum install -y gcc-c++ make # Install build tools
+$ sudo yum install nodejs # Install Node.js
+$ node -v # Check Node.js version
+```
+
+#### Application setup
+```
+$ npm install -g pm2 # Install pm2 process manager - da nam osigura da aplikacija ostane startana i nakon sto ugasimo sesiju. Tj. osigurace da nasa app radi u pozadini.
+$ pm2 start server.js # Start Node.js application
+```
+
+**Korisne komande za troubleshooting:**
+```bash
+$ curl -l http://localhost:3000 # Check if Node.js application is running
+
+$ pm2 list # Check if Node.js application is running
+
+$ ps aux | grep node # Check if Node.js application is running
+
+$ sudo netstat -tulpn | grep :3000 # Check if Node.js application is running on port 3000
+
+$ systemctl status nginx # Check if NGINX is running
+
+$ sudo systemctl reload nginx # Reload NGINX configuration without stopping/restarting the NGINX service and without losing any active connections.
+
+$ sudo systemctl stop/start/restart nginx # Stop NGINX service / Start NGINX service / Restart NGINX service
+
+$ sudo nginx -t # Test NGINX configuration
+
+$ sudo nginx -s reload # Reload NGINX configuration, this command is used to reload NGINX configuration after making changes to the configuration file without restarting the NGINX service.
+$ sudo journalctl -u nginx # Shop NGINX logs and errors. journalctl is a command line tool for viewing and querying the systemd journal.
+
+$ sudo systemctl reload nginx # Reload NGINX configuration without stopping/restarting the NGINX service.
+
+$ semanage port --list # SELinux port list
+
+$ semanage port --list | grep http_port_t # Check if port 80 is allowed
+```
+
 ## Korisni linkovi
 - Link za [Markdown sintaksu](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [How to use GitHub with SSH Keys on Windows 10](https://www.youtube.com/watch?v=a-zX_qc2S-M)
@@ -217,6 +264,7 @@ To su sljedeci fajlovi:
 - [Week-5-1 (Web Servers/NGINX)](https://www.youtube.com/watch?v=agT0spYqHP4)
 - [Week-5-2 (Web Servers/Apache)](https://www.youtube.com/watch?v=qhzWUF5mpWU)
 - [Week-6-1 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=no5T7CzRumI)
+- [Week-6-2 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=MBoN7FflLYs)
 
 
 **Office Hours**
