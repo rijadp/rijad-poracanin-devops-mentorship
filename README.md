@@ -151,9 +151,13 @@ $ sudo systemctl start nginx # pokretanje Nginx-a
 ```
 Ako se koristi stariji OS, npr. CentOS 6.9, onda se za pokretanje Nginx-a koristi komanda:
 ```bash
-$ servis nginx start
+$ service nginx start
 ```
-Da bismo sada mogli pristupiti serveru preko web browsera, potrebno je i da bude pušten port 80. Ako nije onda je potrebno u fajl `/etc/sysconfig/iptables` dodati `-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT`
+Da bismo sada mogli pristupiti serveru preko web browsera, potrebno je i da bude pušten port 80. Ako nije onda je potrebno za Centos 6.9 u fajl `/etc/sysconfig/iptables` dodati `-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT`
+
+A za CentOS 7, potrebno je u firewalld dodati pravilo: `sudo firewall-cmd --zone=public --add-port=80/tcp --permanent`. Za ponovno učitavanje firewalla, koristiti komandu `sudo firewall-cmd --reload`.
+
+Da biste provjerili sva pravila koja su dodana u firewallu na CentOS 7, možete koristiti naredbu: `sudo firewall-cmd --list-all`, ili samo za određenu zonu, npr: `sudo firewall-cmd --zone=public --list-all`
 
 Defaultni root direktoriji nalazi se na lokaciji: `/usr/share/nginx/html`. Ova putanja definisana je unutar `server` bloka defaultnog nginx konfiguracijskog fajla koji se nalazi na lokaciji `/etc/nginx/nginx.conf`.
 **nginx.conf** predstavlja globalni konfiguracijski fajl. U njemu se definisu globalne promjenljive, globalni `http` blok, globalni `server` blok, itd.
@@ -213,6 +217,7 @@ To su sljedeci fajlovi:
 - [Week-5-1 (Web Servers/NGINX)](https://www.youtube.com/watch?v=agT0spYqHP4)
 - [Week-5-2 (Web Servers/Apache)](https://www.youtube.com/watch?v=qhzWUF5mpWU)
 - [Week-6-1 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=no5T7CzRumI)
+- [Week-6-2 (Web Servers/Uvod u Cloud/AWS)](https://www.youtube.com/watch?v=MBoN7FflLYs)
 
 
 **Office Hours**
