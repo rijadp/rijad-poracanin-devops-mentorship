@@ -177,6 +177,18 @@ $ node -v # Check Node.js version
 $ npm install -g pm2 # Install pm2 process manager - da nam osigura da aplikacija ostane startana i nakon sto ugasimo sesiju. Tj. osigurace da nasa app radi u pozadini.
 $ pm2 start server.js # Start Node.js application
 ```
+Da podesimo automatsko startanje aplikacije nakon restarta servera koristimo komande:
+```
+$ pm2 startup # Da se generiše startup skripta.
+$ pm2 save # Da se sačuva trenutna lista procesa kojima upravlja pm2 i koji ce se automatski startati prilikom svakog restarta servera.
+$ systemctl status pm2-root # Provjera da li je proces aktivan.
+$ pm2 unstartup # Ako želimo onemoguciti startup system.
+```
+Da update-ujemo startup skriptu, pokrecemo komande za unstartup, pa za startup.
+```
+$ pm2 unstartup
+$ pm2 startup
+```
 
 **Korisne komande za troubleshooting:**
 ```bash
