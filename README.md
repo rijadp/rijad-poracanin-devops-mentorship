@@ -250,6 +250,7 @@ $ semanage port --list | grep http_port_t # Check if port 80 is allowed
 - Link za [Markdown sintaksu](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [How to use GitHub with SSH Keys on Windows 10](https://www.youtube.com/watch?v=a-zX_qc2S-M)
 - Uvod u Git, Tomo Krajina - [bilješke](https://github.com/rijadp/devops-aws-mentorship-program/blob/main/devops-mentorship-program/02-february/week-1-140223/files/uvod-u-git-notes.md)
+- Linux - [FIND komanda](https://github.com/allops-solutions/devops-aws-mentorship-program/blob/main/resources/notability/bash_notes.pdf)
 - [Explain Shell](https://explainshell.com/)
 
 **Linkovi sa predavanja**
