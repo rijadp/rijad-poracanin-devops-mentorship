@@ -1,10 +1,10 @@
 # TASK-9: Static website with S3 and CloudFront
 
-* [ ]  [S3 website endpoint](http://rijad-poracanin-devops-mentorship-program-week-11.s3-website-us-east-1.amazonaws.com/)
+* [ ]  S3 website endpoint - [S3 Static web](http://rijad-poracanin-devops-mentorship-program-week-11.s3-website-us-east-1.amazonaws.com/)
 
-* [ ]  [CloudFront Distribution website](https://dmd6pln9n2m20.cloudfront.net/)
+* [ ]  CloudFront Distribution website - [Distribution endpoint](https://dmd6pln9n2m20.cloudfront.net/)
 
-* [ ]  [R53 Record](www.rijad-poracanin.awsbosnia.com/)
+* [ ]  R53 record - [www.rijad-poracanin.awsbosnia.com](https://www.rijad-poracanin.awsbosnia.com/)
 
 
 ![s1](S3-bucket-policy.PNG)
