@@ -1,3 +1,5 @@
+# TASK-11: AWS Tools GitFlow Workshop
+
 # Branching Models
 
 Dva popularna Branching modela:
@@ -110,7 +112,7 @@ $ git commit -m "Fixed severe production problem"
 
 ```
 
-Po završetku, bugfux se treba merge-ati nazad u master, ali također i u develop granu:
+Po završetku, bugfix se treba merge-ati nazad u master, ali također i u develop granu:
 
 ```git
 
