@@ -21,7 +21,7 @@ Razlozi zbog kojih se koristi ovaj model:
 # GitFLow
 
 GitFlow uključuje kreiranje nekoliko nivoa branchinga, gdje **Master** grana uvijek sadrži produkcijski kod, a **Develop** grana je grana koja sadrži novi kod.
-Ove dvije grane su tzv. *long-running branches* jer ostaju u našem projektu cijelo vrijeme. Ostale grane, npr. za feature ili release, postoje samo trenutačno, kreiraju se na zahtjev i brušu se nakon što su ispunile svoju svrhu.
+Ove dvije grane su tzv. *long-running branches* jer ostaju u našem projektu cijelo vrijeme. Ostale grane, npr. za feature ili release, postoje samo trenutačno, kreiraju se na zahtjev i brišu se nakon što su ispunile svoju svrhu.
 
 # GitFLow guidelines:
 
@@ -34,10 +34,10 @@ Ove dvije grane su tzv. *long-running branches* jer ostaju u našem projektu cij
 
   ![s1](all-files-and-dirs-used-for-this-task/GitFlow.png)
 
-### Crtice iz članka *A successful Git branching model*
+# Crtice iz članka *A successful Git branching model*
 
 - Vincent Driessen je u ovom članku (link: https://nvie.com/posts/a-successful-git-branching-model/) predstavio model razvoja koji je uveo za neke svoje projekte i koji su se pokazali veoma uspješnim. Taj model je ustvari skup procedura koje svaki član tima mora slijediti kako bi se došlo do upravljanog procesa razvoja softvera.
-- Ideja da postoji jedan glavni repozitorij naziva npr. `origin`. Svaki developer radi *push* i *pull* ka originu, jer je origin centralno mjesto.
+- Ideja je da postoji jedan glavni repozitorij naziva npr. `origin`. Svaki developer radi *push* i *pull* ka originu, jer je origin centralno mjesto.
 - Centralni repo ima dvije grane sa beskonačnim rokom trajanja: **master** i **develop**.
 - Origin/Master je glavna grana u kojoj kod uvijek odražava stvarno produkcijsko stanje.
 - Origin/develop je glavna grana koja odražava stanje sa najnovijim isporučenim promjenama koda za sljedeće izdanje. Neki ovo nazivaju *Integration branch*.
@@ -46,7 +46,7 @@ Ove dvije grane su tzv. *long-running branches* jer ostaju u našem projektu cij
 - Release branches podržavaju pripremu novog produkcijskog release-a. Kreiraju se iz develop grane.
 - Hotfix branches su veoma slične release branchu, jer su namijenjeni za pripremu za novi produkcijski release, doduše neplanirani. Kreiraju se iz master grane.
 
-# Kreiranje feature grane
+### Kreiranje feature grane
 
 Najprije se trebamo odvojiti od *develop* grane:
 
@@ -68,7 +68,7 @@ git push origin develop
 
 ![img](all-files-and-dirs-used-for-this-task/feature-branch.png)
 
-# Kreiranje release grane
+### Kreiranje release grane
 
 Prebacivanje u novi branch 'release-1.2', modifikacija fajlova skriptom, i commit:
 
@@ -81,7 +81,7 @@ $ ./bump-version.sh 1.2
 $ git commit -a -m"prelazak na v1.2"
 ```
 
-Kada je stanje release grane spremno za produkciju, release grana se spaja u master (po definiciji, svaki commit na masterz je novi release). Promjene na release grani se trebaju merge-ati nazad u develop granu, tako da budući release-i sadrže ove promjene.
+Kada je stanje release grane spremno za produkciju, release grana se spaja u master (po definiciji, svaki commit na master je novi release). Promjene na release grani se trebaju merge-ati nazad u develop granu, tako da budući release-i sadrže ove promjene.
 
 ```git
 $ git checkout master
@@ -98,7 +98,7 @@ $ git merge --no-ff release-1.2
 
 Kada smo to završili, ovaj release branch nam više nije potreban i možemo ga izbrisati `$ git branch -d release-1.2`.
 
-# Kreiranje hotfix grane
+### Kreiranje hotfix grane
 
 ```git
 
@@ -129,7 +129,7 @@ $ git merge --no-ff hotfix-1.2.1
 
 Na kraju kada smo završili možemo ukloniti branch `git branch -d hotfix-1.2.1`.
 
-### Pokretanje AWS Cloud9
+# Pokretanje AWS Cloud9
 
 - Unutar AWS Cloud9 kreirao environment sa imenom `gitflow-workshop`.
 
@@ -155,7 +155,7 @@ touch resize.sh
 
 ![img](all-files-and-dirs-used-for-this-task/df-h-after-resizing.png)
 
-### Initial setup i AWS CLI Credential Helper
+# Initial setup i AWS CLI Credential Helper
 
 `git config` komandu koristimo da postavimo Git konfiguraciju.
 
@@ -175,7 +175,7 @@ git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 ```
 
-### Install gitflow
+# Install gitflow
 
 *gitflow* je kolekcija Git ekstenzija koja nam pruža high-level repo operacije za gore spomenuti Driessen branching model. Komande su sljedeće:
 
@@ -190,13 +190,13 @@ sudo ./gitflow-installer.sh
 
 ![img](all-files-and-dirs-used-for-this-task/install-gitflow.png)
 
-### AWS CloudFormation
+# AWS CloudFormation
 
 U ovom modulu ćemo koristiti AWS CloudFormation da podesimo našu aplikaciju i infrastrukturu. Koristićemo **AWS Elastic Beanstalk** da pojednostavimo stvari.
 
 ## Elastic Beanstalk Application
 
-# Stage 1: Create Code Commit Repo
+### Stage 1: Create Code Commit Repo
 
 ```
 aws codecommit create-repository --repository-name gitflow-workshop --repository-description "Repository for Gitflow Workshop"
@@ -209,7 +209,7 @@ git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/gitflow-worksh
 
 ![img](all-files-and-dirs-used-for-this-task/codecommit-repo.png)
 
-# Stage 2: Download the sample code and commit your code to the repository
+### Stage 2: Download the sample code and commit your code to the repository
 
 - Download the sample app archive:
 
@@ -345,9 +345,9 @@ git flow feature start change-color
 
 ![img](all-files-and-dirs-used-for-this-task/creating-feature-branch.png)
 
-- Unutar *index.html* fajla sam proijenio boju iz ljubičaste u zelenu.
+- Unutar *index.html* fajla sam promijenio boju iz ljubičaste u zelenu.
 
--Manuelno kreiran development environment:
+- Manuelno kreiran development environment:
 
 ```
 aws cloudformation create-stack --template-body file://envcreate.yaml --capabilities CAPABILITY_IAM --stack-name gitflow-workshop-changecolor --parameters ParameterKey=Environment,ParameterValue=gitflow-workshop-changecolor ParameterKey=RepositoryName,ParameterValue=gitflow-workshop ParameterKey=BranchName,ParameterValue=feature/change-color
@@ -360,7 +360,7 @@ aws cloudformation create-stack --template-body file://envcreate.yaml --capabili
 
 # Feature Finish
 
-- završavamo razvoj feature-a sa sljedećom komandom:
+- Završavamo razvoj feature-a sa sljedećom komandom:
 
 ```
 git flow feature finish change-color
@@ -376,7 +376,7 @@ git push origin --delete feature/change-color
 
 ![img](all-files-and-dirs-used-for-this-task/delete-feature.png)
 
--Sada radimo commit develop brancha:
+- Sada radimo commit develop brancha:
 
 ```
 git push --set-upstream origin develop
