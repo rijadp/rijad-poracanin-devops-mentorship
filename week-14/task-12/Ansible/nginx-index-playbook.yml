@@ -1,0 +1,9 @@
+- name: Create index.html file
+  hosts: web_servers
+  become: true
+  
+  tasks:
+    - name: Create index.html
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html

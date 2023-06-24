@@ -1,0 +1,64 @@
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-068e73a48b3c5247a
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref WebServerSecurityGroup
+      KeyName: rijad-poracanin-web-server-key
+      Tags: 
+        - Key: Name
+          Value: task-12-web-server-cf
+        - Key: CreatedBy
+          Value: rijad.poracanin
+        - Key: Project 
+          Value: task-12
+        - Key: IaC
+          Value: CloudFormation
+  
+  DbServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-068e73a48b3c5247a
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref DbServerSecurityGroup
+      KeyName: rijad-poracanin-web-server-key
+      Tags: 
+        - Key: Name
+          Value: task-12-db-server-cf
+        - Key: CreatedBy
+          Value: rijad.poracanin
+        - Key: Project 
+          Value: task-12
+        - Key: IaC
+          Value: CloudFormation
+
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Web Server Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  DbServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Database Server Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
