@@ -282,7 +282,7 @@ In this lab we use CodePipeline to create an automated pipeline using the CodeCo
 
 ![img](screenshots/SNS.png)
 
-- The, I updated CodePipeline with additional stages.
+- Next, I updated CodePipeline with additional stages.
 
 ![img](screenshots/UpdatedPipeline.png)
 
